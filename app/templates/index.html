@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Константин Маркин — Системный аналитик</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f5f7fa;
+    color: #1a202c;
+    line-height: 1.6;
+    padding: 40px 20px;
+  }
+  .container { max-width: 880px; margin: 0 auto; }
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.04);
+    margin-bottom: 20px;
+  }
+  h1 { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+  h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #edf2f7;
+  }
+  h3 { font-size: 16px; margin: 20px 0 10px; color: #2d3748; }
+  .subtitle { color: #4a5568; font-size: 16px; margin-bottom: 4px; }
+  .meta { color: #718096; font-size: 14px; }
+  .tag {
+    display: inline-block;
+    background: #ebf4ff;
+    color: #2b6cb0;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    margin: 4px 6px 4px 0;
+    font-weight: 500;
+  }
+  .job { margin-bottom: 20px; }
+  .job:last-child { margin-bottom: 0; }
+  .job-title { font-weight: 600; font-size: 16px; }
+  .job-meta { color: #718096; font-size: 14px; margin-bottom: 8px; }
+  ul { padding-left: 20px; }
+  li { margin-bottom: 6px; color: #2d3748; }
+  .highlight {
+    background: #f0fff4;
+    border-left: 3px solid #48bb78;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin: 8px 0;
+    font-size: 14px;
+  }
+  .links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 16px; }
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: #3182ce; color: #fff; }
+  .btn-primary:hover { background: #2c5282; }
+  .btn-secondary { background: #edf2f7; color: #2d3748; }
+  .btn-secondary:hover { background: #e2e8f0; }
+  .arch {
+    background: #1a202c;
+    color: #e2e8f0;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    overflow-x: auto;
+    line-height: 1.5;
+    font-family: "SF Mono", Monaco, "Cascadia Code", monospace;
+    white-space: pre;
+  }
+  @media (max-width: 640px) {
+    .card { padding: 24px; }
+    h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="card">
+    <h1>Константин Маркин</h1>
+    <p class="subtitle">Системный аналитик</p>
+    <p class="meta">4,5 года опыта · Финтех · Госсектор</p>
+    <div class="links">
+      <a href="/docs" class="btn btn-primary">API Documentation</a>
+      <a href="https://t.me/markin_ka" class="btn btn-secondary">Telegram</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>О себе</h2>
+    <p>Системный аналитик с 4,5 годами опыта в финтехе и госсекторе. Специализируюсь на проектировании интеграций, оптимизации данных и управлении требованиями. Спроектировал и внедрил интеграции с внешними источниками (Мосбиржа, ГИРБО) и внутренними системами банка (ЦФТ, SharePoint). Оптимизировал SQL-запросы, сократив время расчёта резервов на 40%. Активно применяю ИИ-инструменты для повышения эффективности работы.</p>
+  </div>
+
+  <div class="card">
+    <h2>Ключевые навыки</h2>
+    <div>
+      <span class="tag">SQL</span>
+      <span class="tag">Oracle</span>
+      <span class="tag">PostgreSQL</span>
+      <span class="tag">MongoDB</span>
+      <span class="tag">REST API</span>
+      <span class="tag">BPMN</span>
+      <span class="tag">UML</span>
+      <span class="tag">Jira</span>
+      <span class="tag">Confluence</span>
+      <span class="tag">Git</span>
+      <span class="tag">Docker</span>
+      <span class="tag">Nginx</span>
+      <span class="tag">Low-code</span>
+      <span class="tag">Интеграции</span>
+      <span class="tag">Миграция БД</span>
+      <span class="tag">ИИ-инструменты</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Опыт работы</h2>
+
+    <div class="job">
+      <div class="job-title">Greendata — Системный аналитик</div>
+      <div class="job-meta">Май 2023 — настоящее время</div>
+      <ul>
+        <li>Проектировал модули финансовой и бухгалтерской отчётности, расчёта резервов, справедливой стоимости и мониторинга обязательств для крупного российского банка.</li>
+        <li>Спроектировал интеграции с Мосбиржей, ГИРБО, ЦФТ, SharePoint и внутренним файловым хранилищем через REST API.</li>
+        <li>Участвовал в миграции БД Oracle → PostgreSQL (миллионы записей), оптимизировал SQL-запросы.</li>
+        <li>Внедрил загрузку финансовой отчётности через Excel — время ввода сократилось на 55%.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-title">ФКУ «Налог-Сервис» ФНС России — Системный аналитик</div>
+      <div class="job-meta">Апрель 2022 — Май 2023</div>
+      <ul>
+        <li>Собирал и формализовывал требования к доработкам внутренних информационных систем ФНС.</li>
+        <li>Проектировал бизнес-процессы в UML, декомпозировал требования и заводил задачи в Jira.</li>
+        <li>Обеспечил прозрачность процесса разработки и единое понимание требований между бизнесом и командой.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Ключевые достижения</h2>
+    <div class="highlight">🚀 Сократил время ежедневного расчёта резервов на 40% за счёт оптимизации SQL и разделения скриптов по финансовым инструментам</div>
+    <div class="highlight">⚡ Ускорил формирование отчётов на 20% после миграции с Oracle на PostgreSQL</div>
+    <div class="highlight">📊 Сократил время ввода данных на 55% благодаря внедрению загрузки через Excel</div>
+    <div class="highlight">🔗 Автоматизировал загрузку финансовой отчётности из внешних источников (Мосбиржа, ГИРБО)</div>
+  </div>
+
+  <div class="card">
+    <h2>Pet-проект: Progress Tracker</h2>
+    <p style="margin-bottom: 16px;">
+      Этот сайт — мой личный проект, созданный для практики современных технологий
+      и демонстрации навыков системного аналитика в реальном продукте.
+      Он развёрнут на собственном сервере под управлением Ubuntu, полностью
+      контейнеризирован и описан как код — переезд на новый сервер занимает
+      одну команду.
+    </p>
+
+    <h3>Что умеет</h3>
+    <ul>
+      <li>REST API с автогенерацией документации в Swagger UI (OpenAPI 3.1)</li>
+      <li>Хранение журнала прогресса в PostgreSQL — транзакционные данные</li>
+      <li>Хранение динамического каталога навыков в MongoDB — polyglot persistence</li>
+      <li>Reverse-proxy на Nginx с автоматическим SSL от Let's Encrypt</li>
+      <li>Полная контейнеризация через Docker Compose</li>
+      <li>Bootstrap-скрипт для развёртывания с нуля за одну команду</li>
+    </ul>
+
+    <h3>Стек</h3>
+    <div>
+      <span class="tag">FastAPI</span>
+      <span class="tag">Python 3.12</span>
+      <span class="tag">PostgreSQL 16</span>
+      <span class="tag">MongoDB 7</span>
+      <span class="tag">Docker Compose</span>
+      <span class="tag">Nginx</span>
+      <span class="tag">Let's Encrypt</span>
+      <span class="tag">REST API</span>
+      <span class="tag">OpenAPI</span>
+      <span class="tag">Ubuntu 24.04</span>
+    </div>
+
+    <h3>Архитектура</h3>
+    <div class="arch">[Интернет]
+    ↓ 443 (HTTPS)
+[Nginx] ──SSL── [Let's Encrypt]
+    ↓ 8000 (внутри Docker-сети)
+[FastAPI] ──┬── [PostgreSQL]  ← журнал прогресса
+            └── [MongoDB]     ← каталог навыков</div>
+
+    <div class="links">
+      <a href="/docs" class="btn btn-primary">Swagger UI</a>
+      <a href="/openapi.json" class="btn btn-secondary">OpenAPI-схема</a>
+      <a href="https://github.com/markink/progress-tracker" class="btn btn-secondary">GitHub</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Образование</h2>
+    <div class="job">
+      <div class="job-title">Магистр, Программная инженерия</div>
+      <div class="job-meta">ПГАТУ им. академика Д.Н. Прянишникова · 2026</div>
+    </div>
+    <div class="job">
+      <div class="job-title">Инженер, Информационные системы и технологии</div>
+      <div class="job-meta">ПГАТУ им. академика Д.Н. Прянишникова · 2024</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Контакты</h2>
+    <p>Telegram: <a href="https://t.me/markin_ka" style="color:#3182ce;">@markin_ka</a></p>
+    <p>MAX: +7 919 465-95-05</p>
+  </div>
+
+</div>
+</body>
+</html>
