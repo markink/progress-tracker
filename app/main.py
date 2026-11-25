@@ -28,6 +28,14 @@ class ProgressLog(Base):
 
 Base.metadata.create_all(bind=engine)
 
+class ClickAnalytics(Base):
+    __tablename__ = "click_analytics"
+    id = Column(Integer, primary_key=True, index=True)
+    action = Column(String, index=True)
+    timestamp = Column(DateTime, default=datetime.utcnow)
+
+
+
 MONGO_URL = os.getenv("MONGO_URL")
 mongo_client = MongoClient(MONGO_URL)
 mongo_db = mongo_client["tracker"]
@@ -93,7 +101,19 @@ def get_db():
 @app.get("/health")
 def health():
     return {"status": "ok"}
-
+    
+@app.get("/api/stats")
+def get_stats(db: Session = Depends(get_db)):
+    # Считаем, сколько раз скачали резюме
+    downloads = db.query(ClickAnalytics).filter(ClickAnalytics.action == "download_resume").count()
+    # Считаем переходы в ТГ
+    tg_clicks = db.query(ClickAnalytics).filter(ClickAnalytics.action == "click_telegram").count()
+    
+    return {
+        "downloads": downloads,
+        "telegram_clicks": tg_clicks
+    }
+    
 @app.post("/skills")
 def add_skill(skill: Skill):
     skills_collection.insert_one(skill.dict())
