@@ -39,7 +39,7 @@ class Skill(BaseModel):
     notes: Optional[str] = None
 
 app = FastAPI(title="Progress Tracker API")
-templates = Jinja2Templates(directory="app/templates")
+templates = Jinja2Templates(directory="templates")
 
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
