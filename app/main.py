@@ -41,11 +41,11 @@ class Skill(BaseModel):
 app = FastAPI(title="Progress Tracker API")
 templates = Jinja2Templates(directory="templates")
 
+
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
-    return templates.TemplateResponse("index.html", {"request": request})
+    return templates.TemplateResponse(request=request, name="index.html")
 
-# Специальный маршрут для твоего PDF файла из корня
 @app.get("/markin_konstantin.pdf")
 async def get_resume():
     # Возвращаем файл как есть
