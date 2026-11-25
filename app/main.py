@@ -41,8 +41,7 @@ class Skill(BaseModel):
     priority: Optional[str] = "medium"
     notes: Optional[str] = None
 
-app = FastAPI(title="Progress Tracker API", lifespan=lifespan)
-templates = Jinja2Templates(directory="templates")
+
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -65,6 +64,8 @@ async def lifespan(app: FastAPI):
     yield
     await producer.stop()
 
+app = FastAPI(title="Progress Tracker API", lifespan=lifespan)
+templates = Jinja2Templates(directory="templates")
 
 class ClickEvent(BaseModel):
     action: str # Что нажали (например: 'download_resume', 'click_tg')
