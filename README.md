@@ -1,6 +1,6 @@
 # Progress Tracker
 
-Персональный трекер навыков с REST API, PostgreSQL, MongoDB и HTTPS.
+Тренировка навыков с REST API, PostgreSQL, MongoDB и HTTPS.
 
 ## Стек
 
