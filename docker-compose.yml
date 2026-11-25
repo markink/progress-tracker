@@ -1,6 +1,20 @@
 version: '3.8'
 
 services:
+  consumer:
+    build: ./app
+    command: python consumer.py
+    depends_on:
+      - db
+      - redpanda
+    environment:
+      - DATABASE_URL=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+        
   redpanda:
     image: docker.redpanda.com/redpandadata/redpanda:v24.1.7
     container_name: redpanda
