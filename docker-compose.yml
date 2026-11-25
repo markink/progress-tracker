@@ -81,7 +81,7 @@ services:
 volumes:
   postgres_data:
   mongo_data:
-  redpanda:
+  redpanda_data:
 
 networks:
   app_network:
