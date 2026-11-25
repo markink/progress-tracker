@@ -1,3 +1,6 @@
+import json
+from contextlib import asynccontextmanager
+from aiokafka import AIOKafkaProducer
 from fastapi import FastAPI, Depends, HTTPException, Request
 from fastapi.responses import HTMLResponse, FileResponse # Добавили FileResponse
 from fastapi.templating import Jinja2Templates
@@ -38,7 +41,7 @@ class Skill(BaseModel):
     priority: Optional[str] = "medium"
     notes: Optional[str] = None
 
-app = FastAPI(title="Progress Tracker API")
+app = FastAPI(title="Progress Tracker API", lifespan=lifespan)
 templates = Jinja2Templates(directory="templates")
 
 
@@ -50,6 +53,32 @@ async def read_root(request: Request):
 async def get_resume():
     # Возвращаем файл как есть
     return FileResponse("markin_konstantin.pdf", filename="Маркин_Резюме.pdf")
+    
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    producer = AIOKafkaProducer(
+        bootstrap_servers='redpanda:9092',
+        value_serializer=lambda v: json.dumps(v).encode('utf-8')
+    )
+    await producer.start()
+    app.state.kafka_producer = producer # Сохраняем, чтобы использовать в эндпоинтах
+    yield
+    await producer.stop()
+
+
+class ClickEvent(BaseModel):
+    action: str # Что нажали (например: 'download_resume', 'click_tg')
+
+@app.post("/api/track")
+async def track_event(event: ClickEvent, request: Request):
+    # Формируем сообщение
+    payload = {
+        "action": event.action,
+        "timestamp": datetime.utcnow().isoformat()
+    }
+    # Отправляем в Kafka в топик click-events
+    await request.app.state.kafka_producer.send_and_wait("click-events", payload)
+    return {"status": "tracked"}
 # ==========================================
 
 def get_db():
@@ -96,3 +125,5 @@ def list_progress(db: Session = Depends(get_db)):
 @app.get("/progress/{skill_name}")
 def get_progress_by_skill(skill_name: str, db: Session = Depends(get_db)):
     return db.query(ProgressLog).filter(ProgressLog.skill_name == skill_name).all()
+
+
