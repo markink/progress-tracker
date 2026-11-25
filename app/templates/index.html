@@ -188,5 +188,33 @@
         </aside>
 
     </div>
+
+    <script>
+        function trackClick(actionName) {
+            // Используем keepalive: true, чтобы запрос успел уйти, даже если страница начнет скачивать файл
+            fetch('/api/track', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: actionName }),
+                keepalive: true 
+            }).catch(err => console.log('Ошибка трекинга:', err));
+        }
+
+        // Навешиваем отслеживание на кнопки (находим их по тексту или добавляем id)
+        document.addEventListener("DOMContentLoaded", () => {
+            // Кнопка скачать резюме
+            const resumeBtn = document.querySelector('a[download]');
+            if (resumeBtn) resumeBtn.addEventListener('click', () => trackClick('download_resume'));
+
+            // Ссылки на контакты (Telegram, MAX, GitHub, сайт)
+            const tgLink = document.querySelector('a[href*="t.me"]');
+            if (tgLink) tgLink.addEventListener('click', () => trackClick('click_telegram'));
+
+            const githubLink = document.querySelector('a[href*="github.com"]');
+            if (githubLink) githubLink.addEventListener('click', () => trackClick('click_github'));
+            
+        });
+    </script>
+    
 </body>
 </html>
