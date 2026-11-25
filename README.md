@@ -9,6 +9,7 @@
 - MongoDB — каталог навыков
 - Nginx + Let's Encrypt — reverse-proxy и SSL
 - Docker Compose
+- Kafka
 
 ## Развёртывание на новом сервере
 
