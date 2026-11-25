@@ -1,4 +1,6 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, Request
+from fastapi.responses import HTMLResponse, FileResponse # Добавили FileResponse
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
 from typing import List, Optional
 from sqlalchemy import create_engine, Column, Integer, String, Float, DateTime
@@ -37,6 +39,18 @@ class Skill(BaseModel):
     notes: Optional[str] = None
 
 app = FastAPI(title="Progress Tracker API")
+templates = Jinja2Templates(directory="app/templates")
+
+@app.get("/", response_class=HTMLResponse)
+async def read_root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+# Специальный маршрут для твоего PDF файла из корня
+@app.get("/markin_konstantin.pdf")
+async def get_resume():
+    # Возвращаем файл как есть
+    return FileResponse("markin_konstantin.pdf", filename="Маркин_Резюме.pdf")
+# ==========================================
 
 def get_db():
     db = SessionLocal()
