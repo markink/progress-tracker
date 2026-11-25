@@ -1,4 +1,30 @@
+version: '3.8'
+
 services:
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:v24.1.7
+    container_name: redpanda
+    command:
+      - redpanda
+      - start
+      - --mode dev-container
+      - --smp 1
+      - --memory 1G
+      - --reserve-memory 0M
+      - --overprovisioned
+      - --kafka-addr internal://0.0.0.0:9092,external://0.0.0.0:19092
+      - --advertise-kafka-addr internal://redpanda:9092,external://localhost:19092
+    ports:
+      - "19092:19092"
+    volumes:
+      - redpanda_data:/var/lib/redpanda/data
+    mem_limit: 1g
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
   db:
     image: postgres:16
     restart: always
@@ -20,30 +46,6 @@ services:
       - mongo_data:/data/db
     networks: [app_network]
   
-  redpanda:
-  image: docker.redpanda.com/redpandadata/redpanda:v24.1.7
-  container_name: redpanda
-  command:
-    - redpanda
-    - start
-    - --mode dev-container
-    - --smp 1
-    - --memory 1G                # Увеличиваем до 1 ГБ
-    - --reserve-memory 0M
-    - --overprovisioned
-    - --kafka-addr internal://0.0.0.0:9092,external://0.0.0.0:19092
-    - --advertise-kafka-addr internal://redpanda:9092,external://localhost:19092
-  ports:
-    - "19092:19092"
-  volumes:
-    - redpanda_data:/var/lib/redpanda/data
-  mem_limit: 1g                 # Увеличиваем лимит для контейнера
-  logging:
-    driver: "json-file"
-    options:
-      max-size: "10m"
-      max-file: "3"
-      
   api:
     build: ./app
     restart: always
